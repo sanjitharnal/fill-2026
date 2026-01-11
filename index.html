@@ -43,7 +43,7 @@
     </ol>
 <h2>Teachable Machine Image Model</h2>
 <button type="button" onclick="init()">Start</button>
-<button type="button" onclick="end()">stop</button>
+<button type="button" onclick="end()">Stop</button>
 <div id="webcam-container"></div>
 <div id="label-container"></div>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
@@ -90,7 +90,11 @@
         window.requestAnimationFrame(loop);
     }
      async function end() {
-         webcam.stop();
+        webcam.stop();
+        const webcamContainer = document.getElementById("webcam-container");
+        if (webcamContainer && webcam.canvas) {
+            webcamContainer.removeChild(webcam.canvas);
+        }
      }
     // run the webcam image through the image model
     async function predict() {
