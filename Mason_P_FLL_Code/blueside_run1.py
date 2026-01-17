@@ -2,7 +2,7 @@ from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor
 from pybricks.parameters import Port,Direction
 from pybricks.robotics import DriveBase
-from pybricks.tools import multitask, run_task
+from pybricks.tools import multitask, run_task, wait
 
 
 hub = PrimeHub()
@@ -29,10 +29,11 @@ async def main():
         await robot.straight(900)
         await robot.straight(-35)
         ## Flip Structure floor (M5) to make upright
-        await LAM.run_time(800,500)
+        await LAM.run_time(800,550)
+        await wait(1000)
         ## Go back to blue side
         robot.settings(straight_speed=600,straight_acceleration=800,turn_rate=400,turn_acceleration=200)
         await robot.straight(-900)
+        await LAM.run_time(-800,550)
 # Runs the main program from start to finish.
 run_task(main())
-
